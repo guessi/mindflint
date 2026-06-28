@@ -81,10 +81,6 @@ AILearningTools/
 - [ ] Hooks — auto-detect when user skips thinking and asks for the answer directly
 
 ---
----
-
----
----
 
 <div align="center">
 
@@ -94,11 +90,13 @@ AILearningTools/
 
 ## 中文版
 
-> 燧石不是光源，它是火花。這個專案的初衷是點火，不是給光。
+> 燧石之用，不在照明，在於引燃。  
+> 凡代人思者，予以燭而奪其燧。
 
-Claude skill 套件，基於**學思達教學法**，防止 AI 時代的偽學習。
+Claude skill 套件，基於**學思達教學法**，逼出真正的思考。
 
-> 偽學習：讀了 AI 的答案，覺得懂了，其實沒有。
+> AI 給的答案，讀完像是懂了。  
+> 那不是懂，是借了別人的火把走路——一熄，就迷路。
 
 ## 核心理念
 
