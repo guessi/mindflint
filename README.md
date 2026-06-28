@@ -1,7 +1,13 @@
-# AI Learning Tools
+<div align="center">
 
-> **mindflint** = mind + flint.  
-> A flint doesn't light things up — it sparks them. The idea is to strike the mind, not fill it.
+<img src="mindflint-logo.png" width="280" />
+
+# mindflint
+
+*mind + flint — A flint doesn't light things up, it sparks them.*  
+*The idea is to strike the mind, not fill it.*
+
+</div>
 
 A Claude skill suite based on **Socratic guided learning** — prevents fake learning in the AI era.
 
@@ -77,9 +83,17 @@ AILearningTools/
 ---
 ---
 
-# AI Learning Tools（中文版）
+---
+---
 
-> **mindflint** = mind + flint（燧石）。  
+<div align="center">
+
+<img src="mindflint-logo.png" width="280" />
+
+</div>
+
+## 中文版
+
 > 燧石不是光源，它是火花。這個專案的初衷是點火，不是給光。
 
 Claude skill 套件，基於**學思達教學法**，防止 AI 時代的偽學習。
