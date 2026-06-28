@@ -1,0 +1,2 @@
+description = "Review learning weak spots from this conversation — scan for breaks, output actionable reinforcement suggestions"
+prompt = "Scan this conversation for where the user answered incorrectly, couldn't answer, or only knew the conclusion without understanding the reason. Compile a weakness list with a break description and concrete reinforcement suggestion for each concept. One-shot output, then return to the previous mode."
