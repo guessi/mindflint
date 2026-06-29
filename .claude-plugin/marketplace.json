@@ -1,0 +1,17 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "mindflint",
+  "description": "Socratic learning skills for Claude Code — active learning, verified understanding, anti-fake-learning.",
+  "owner": {
+    "name": "Stephanie Chung",
+    "url": "https://github.com/chungFTF"
+  },
+  "plugins": [
+    {
+      "name": "ai-learning-tools",
+      "description": "Socratic learning skills (EN + ZH) — active learning, verified understanding, differentiated feedback, anti-fake-learning.",
+      "source": "./",
+      "category": "education"
+    }
+  ]
+}
