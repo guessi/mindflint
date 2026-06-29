@@ -9,7 +9,7 @@
 
 </div>
 
-A Claude skill suite based on **Socratic guided learning** — prevents fake learning in the AI era.
+A Claude Code and Codex skill suite based on **Socratic guided learning** — prevents fake learning in the AI era.
 
 > Fake learning: you read the AI's answer, felt like you got it, but didn't.
 
@@ -31,6 +31,8 @@ Question → Ask for current understanding → Guide derivation → Verify → L
 
 ## Installation
 
+### Claude Code
+
 **From GitHub:**
 ```bash
 claude plugin marketplace add chungFTF/mindflint
@@ -48,7 +50,44 @@ Restart Claude Code after install. Verify with:
 claude plugin list
 ```
 
+### Codex
+
+Mindflint can also be installed as a Codex plugin without cloning this repository.
+The Codex plugin id is `ai-learning-tools`, and the product/display name is
+Mindflint.
+
+**From GitHub:**
+```bash
+codex plugin marketplace add chungFTF/mindflint --ref main
+codex
+```
+
+For stable releases, prefer a version tag once one is available:
+```bash
+codex plugin marketplace add chungFTF/mindflint --ref v0.2.0
+```
+
+**From local path for development:**
+```bash
+codex plugin marketplace add ~/path/to/mindflint
+```
+
+Then open the plugin directory:
+```text
+/plugins
+```
+
+Select the `Mindflint Plugins` marketplace and install Mindflint /
+`ai-learning-tools`.
+
+To refresh a GitHub-installed marketplace later:
+```bash
+codex plugin marketplace upgrade mindflint
+```
+
 ## Usage
+
+### Claude Code
 
 **1. Start learning**
 ```
@@ -73,10 +112,55 @@ Scans the conversation, lists breaks and concrete reinforcement suggestions.
 stop mindflint / normal mode
 ```
 
+### Codex
+
+Codex does not use the same slash-command model as Claude Code. First invoke the
+installed plugin:
+
+```text
+@Ai-Learning-Tools
+```
+
+Then select a bundled skill:
+
+```text
+$mindflint
+$mindflint-check
+$mindflint-review
+$mindflint-en
+$mindflint-check-en
+$mindflint-review-en
+```
+
+Examples:
+
+```text
+@Ai-Learning-Tools $mindflint-en difference between BigQuery partition and cluster
+@Ai-Learning-Tools $mindflint-check-en quiz me on BigQuery partition vs cluster
+@Ai-Learning-Tools $mindflint-review-en review my weak spots from this conversation
+```
+
+If skill autocomplete is unavailable in a Codex CLI version, you can still reference
+the skill path explicitly:
+
+```text
+Use skills/mindflint-en to guide me through BigQuery partition vs cluster.
+Use skills/mindflint-check-en to check my understanding.
+Use skills/mindflint-review-en to review my weak spots from this conversation.
+```
+
+Note: Claude Code uses slash commands such as `/mindflint-en`. Codex uses plugin
+invocation with `@` and bundled skill invocation with `$`.
+
 ## File Structure
 
 ```
 AILearningTools/
+├── .agents/plugins/marketplace.json
+├── .claude-plugin/
+│   ├── marketplace.json
+│   └── plugin.json
+├── .codex-plugin/plugin.json
 ├── plugin.yaml
 ├── skills/
 │   ├── mindflint/SKILL.md
@@ -172,7 +256,7 @@ Guide: DNS has TTL caching. Tokyo is down, but your computer already cached "go 
 > 燧石之用，不在照明，在於引燃。  
 > 凡代人思者，予以燭而奪其燧。
 
-Claude skill 套件，基於**學思達教學法**，逼出真正的思考。
+Claude Code 與 Codex skill 套件，基於**學思達教學法**，逼出真正的思考。
 
 > AI 給的答案，讀完像是懂了。  
 > 那不是懂，是借了別人的火把走路——一熄，就迷路。
@@ -195,6 +279,8 @@ Claude skill 套件，基於**學思達教學法**，逼出真正的思考。
 
 ## 安裝
 
+### Claude Code
+
 **從 GitHub 安裝：**
 ```bash
 claude plugin marketplace add chungFTF/mindflint
@@ -212,7 +298,42 @@ claude plugin install ai-learning-tools
 claude plugin list
 ```
 
+### Codex
+
+Mindflint 也可以作為 Codex plugin 使用，而且使用者不需要先 clone 這個 repo。
+Codex plugin id 是 `ai-learning-tools`，產品/顯示名稱是 Mindflint。
+
+**從 GitHub 安裝：**
+```bash
+codex plugin marketplace add chungFTF/mindflint --ref main
+codex
+```
+
+正式 release 後，建議改用版本 tag：
+```bash
+codex plugin marketplace add chungFTF/mindflint --ref v0.2.0
+```
+
+**從本機路徑安裝，供開發測試使用：**
+```bash
+codex plugin marketplace add ~/path/to/mindflint
+```
+
+接著打開 plugin directory：
+```text
+/plugins
+```
+
+選擇 `Mindflint Plugins` marketplace，安裝 Mindflint / `ai-learning-tools`。
+
+之後若要更新 GitHub 安裝的 marketplace：
+```bash
+codex plugin marketplace upgrade mindflint
+```
+
 ## 使用流程
+
+### Claude Code
 
 **1. 開始學習**
 ```
@@ -237,10 +358,53 @@ Claude 會先問你目前的理解，不會直接解釋。
 stop mindflint / 正常模式
 ```
 
+### Codex
+
+Codex 不使用 Claude Code 那套 slash-command model。先載入已安裝的 plugin：
+
+```text
+@Ai-Learning-Tools
+```
+
+再選擇 bundled skill：
+
+```text
+$mindflint
+$mindflint-check
+$mindflint-review
+$mindflint-en
+$mindflint-check-en
+$mindflint-review-en
+```
+
+範例：
+
+```text
+@Ai-Learning-Tools $mindflint BigQuery 的 partition 和 cluster 差異
+@Ai-Learning-Tools $mindflint-check 測驗我 BigQuery partition vs cluster
+@Ai-Learning-Tools $mindflint-review 回顧這段對話中我的弱點
+```
+
+如果某個 Codex CLI 版本沒有出現 skill autocomplete，也可以用 skill path 明確指定：
+
+```text
+Use skills/mindflint to guide me through BigQuery partition 和 cluster 的差異。
+Use skills/mindflint-check to check my understanding.
+Use skills/mindflint-review to review my weak spots from this conversation.
+```
+
+注意：Claude Code 使用 `/mindflint` 這類 slash commands；Codex 使用 `@`
+載入 plugin，再用 `$` 選 bundled skill。
+
 ## 檔案結構
 
 ```
 AILearningTools/
+├── .agents/plugins/marketplace.json
+├── .claude-plugin/
+│   ├── marketplace.json
+│   └── plugin.json
+├── .codex-plugin/plugin.json
 ├── plugin.yaml
 ├── skills/
 │   ├── mindflint/SKILL.md
