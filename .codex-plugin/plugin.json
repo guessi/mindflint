@@ -1,0 +1,38 @@
+{
+  "name": "ai-learning-tools",
+  "version": "0.2.0",
+  "description": "Socratic guided learning skills for Codex: active learning, understanding checks, and conversation review.",
+  "author": {
+    "name": "Stephanie",
+    "url": "https://github.com/chungFTF"
+  },
+  "homepage": "https://github.com/chungFTF/mindflint",
+  "repository": "https://github.com/chungFTF/mindflint",
+  "license": "MIT",
+  "keywords": [
+    "learning",
+    "socratic",
+    "education",
+    "mindflint",
+    "active-learning",
+    "anti-fake-learning"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Mindflint",
+    "shortDescription": "Socratic guided learning for Codex",
+    "longDescription": "Mindflint helps Codex guide learning through questions first, staged hints, understanding checks, and review of weak spots instead of immediately giving direct answers.",
+    "developerName": "Stephanie",
+    "category": "Productivity",
+    "capabilities": [
+      "Read"
+    ],
+    "websiteURL": "https://github.com/chungFTF/mindflint",
+    "defaultPrompt": [
+      "Use mindflint to guide me through this topic.",
+      "Use mindflint-check to check my understanding.",
+      "Use mindflint-review to review my weak spots from this conversation."
+    ],
+    "brandColor": "#2563EB"
+  }
+}
