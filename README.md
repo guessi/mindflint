@@ -1,48 +1,60 @@
 <div align="center">
 
-<img src="mindflint-logo.png" width="280" />
+<img src="icon.jpg" width="280" />
 
 # mindflint
 
 *mind + flint — A flint doesn't light things up, it sparks them.*  
 *The idea is to strike the mind, not fill it.*
 
+**[English](#english) · [中文](#中文)**
+
 </div>
+
+---
+
+<a id="english"></a>
+
+## English
 
 A Claude Code and Codex skill suite based on **Socratic guided learning** — prevents fake learning in the AI era.
 
 > Fake learning: you read the AI's answer, felt like you got it, but didn't.
 
-## Core Principle
+### Core Principle
 
-Never give the answer directly. Ask first, guide, then verify.
+Never give the answer directly. Set context first, then guide thinking, then verify.
 
 ```
-Question → Ask for current understanding → Guide derivation → Verify → Leave a takeaway question
+Question → Landscape (2-4 sentences) → Guiding question → Guide derivation → Verify → Key takeaways + next step
 ```
 
-## Skills
+When a concept is complete, the guide summarizes key points and prompts the user to run `/mindflint-check` or `/mindflint-review`.
+
+### Skills
 
 | Skill | Command | Purpose |
 |-------|---------|---------|
-| `mindflint-en` | `/mindflint-en` | Main mode: Socratic guidance, no direct answers |
-| `mindflint-check-en` | `/mindflint-check-en` | Quiz: 3 questions (concept/application/transfer) to find real breaks |
-| `mindflint-review-en` | `/mindflint-review-en` | Review: scan the conversation, compile weakness list |
+| `mindflint` | `/mindflint` | Main mode: Socratic guidance, no direct answers |
+| `mindflint-check` | `/mindflint-check` | Quiz: 3 questions (concept/application/transfer) to find real breaks |
+| `mindflint-review` | `/mindflint-review` | Review: scan the conversation, compile weakness list |
 
-## Installation
+All skills respond in the language the user writes in (Chinese or English).
 
-### Claude Code
+### Installation
+
+#### Claude Code
 
 **From GitHub:**
 ```bash
 claude plugin marketplace add chungFTF/mindflint
-claude plugin install ai-learning-tools
+claude plugin install mindflint
 ```
 
 **From local path:**
 ```bash
 claude plugin marketplace add ~/path/to/mindflint
-claude plugin install ai-learning-tools
+claude plugin install mindflint
 ```
 
 Restart Claude Code after install. Verify with:
@@ -50,11 +62,10 @@ Restart Claude Code after install. Verify with:
 claude plugin list
 ```
 
-### Codex
+#### Codex
 
 Mindflint can also be installed as a Codex plugin without cloning this repository.
-The Codex plugin id is `ai-learning-tools`, and the product/display name is
-Mindflint.
+The Codex plugin id is `mindflint`.
 
 **From GitHub:**
 ```bash
@@ -72,38 +83,32 @@ codex plugin marketplace add chungFTF/mindflint --ref v0.2.0
 codex plugin marketplace add ~/path/to/mindflint
 ```
 
-Then open the plugin directory:
-```text
-/plugins
-```
-
-Select the `Mindflint Plugins` marketplace and install Mindflint /
-`ai-learning-tools`.
+Then open the plugin directory, select the `Mindflint Plugins` marketplace and install Mindflint.
 
 To refresh a GitHub-installed marketplace later:
 ```bash
 codex plugin marketplace upgrade mindflint
 ```
 
-## Usage
+### Usage
 
-### Claude Code
+#### Claude Code
 
 **1. Start learning**
 ```
-/mindflint-en difference between BigQuery partition and cluster
+/mindflint difference between BigQuery partition and cluster
 ```
-Claude asks for your current understanding first — no direct explanation.
+Claude sets context first, then asks for your thinking — no direct explanation.
 
 **2. Quiz yourself**
 ```
-/mindflint-check-en
+/mindflint-check
 ```
 Three questions, one at a time. Weakness list after all three.
 
 **3. Review weak spots**
 ```
-/mindflint-review-en
+/mindflint-review
 ```
 Scans the conversation, lists breaks and concrete reinforcement suggestions.
 
@@ -112,13 +117,12 @@ Scans the conversation, lists breaks and concrete reinforcement suggestions.
 stop mindflint / normal mode
 ```
 
-### Codex
+#### Codex
 
-Codex does not use the same slash-command model as Claude Code. First invoke the
-installed plugin:
+First invoke the installed plugin:
 
 ```text
-@Ai-Learning-Tools
+@Mindflint
 ```
 
 Then select a bundled skill:
@@ -127,35 +131,28 @@ Then select a bundled skill:
 $mindflint
 $mindflint-check
 $mindflint-review
-$mindflint-en
-$mindflint-check-en
-$mindflint-review-en
 ```
 
 Examples:
 
 ```text
-@Ai-Learning-Tools $mindflint-en difference between BigQuery partition and cluster
-@Ai-Learning-Tools $mindflint-check-en quiz me on BigQuery partition vs cluster
-@Ai-Learning-Tools $mindflint-review-en review my weak spots from this conversation
+@Mindflint $mindflint difference between BigQuery partition and cluster
+@Mindflint $mindflint-check quiz me on BigQuery partition vs cluster
+@Mindflint $mindflint-review review my weak spots from this conversation
 ```
 
-If skill autocomplete is unavailable in a Codex CLI version, you can still reference
-the skill path explicitly:
+If skill autocomplete is unavailable, reference the skill path explicitly:
 
 ```text
-Use skills/mindflint-en to guide me through BigQuery partition vs cluster.
-Use skills/mindflint-check-en to check my understanding.
-Use skills/mindflint-review-en to review my weak spots from this conversation.
+Use skills/mindflint to guide me through BigQuery partition vs cluster.
+Use skills/mindflint-check to check my understanding.
+Use skills/mindflint-review to review my weak spots from this conversation.
 ```
 
-Note: Claude Code uses slash commands such as `/mindflint-en`. Codex uses plugin
-invocation with `@` and bundled skill invocation with `$`.
-
-## File Structure
+### File Structure
 
 ```
-AILearningTools/
+mindflint/
 ├── .agents/plugins/marketplace.json
 ├── .claude-plugin/
 │   ├── marketplace.json
@@ -165,49 +162,39 @@ AILearningTools/
 ├── skills/
 │   ├── mindflint/SKILL.md
 │   ├── mindflint-check/SKILL.md
-│   ├── mindflint-review/SKILL.md
-│   ├── mindflint-en/SKILL.md
-│   ├── mindflint-check-en/SKILL.md
-│   └── mindflint-review-en/SKILL.md
+│   └── mindflint-review/SKILL.md
 └── commands/
     ├── mindflint.toml
     ├── mindflint-check.toml
-    ├── mindflint-review.toml
-    ├── mindflint-en.toml
-    ├── mindflint-check-en.toml
-    └── mindflint-review-en.toml
+    └── mindflint-review.toml
 ```
 
-## Roadmap
+### Roadmap
 
 - [ ] `mindflint-progress` — cross-session understanding progress tracking (needs persistent storage)
 - [ ] Hooks — auto-detect when user skips thinking and asks for the answer directly
 
-## Example Conversation
+### Example Conversation
 
 ```
 User: I want to understand how GCP Load Balancer differs from AWS Load Balancer.
 
-Guide: Hold on — before we compare. What's your current understanding of AWS Load Balancer?
+Guide: Before we compare, let me set the stage. AWS Load Balancer is a family of
+       three products — ALB, NLB, and CLB — each operating at a different layer of
+       the network stack. The layer it operates at determines what it can "see" and
+       what routing decisions it can make.
 
-User: I know AWS Load Balancer connects to target groups, has health checks, and can scale by
-      adding instances based on different rules.
+       Given that, what do you think determines which layer a load balancer operates at?
 
-Guide: You've got the core skeleton. Now go one step further — why do you think AWS needs three
-       different Load Balancers (ALB/NLB/CLB)? They all "distribute traffic across machines,"
-       so why not just use one?
+User: I know AWS Load Balancer connects to target groups, has health checks, and can
+      scale by adding instances based on different rules.
 
-       Hint: Think about HTTP requests, UDP packets, TCP database connections — do they all need
-       the same kind of handling?
+Guide: You've got the operational skeleton — target groups, health checks, scaling.
+       That's the "what it does." Now let's get at the "how it sees traffic."
 
-User: Because one machine would get overloaded with too many requests.
-
-Guide: That's why Load Balancers exist — totally correct. But I'm asking why we need different
-       kinds. Different angle: does a Load Balancer need to "understand" the same things when
-       handling HTTP web requests vs. TCP database connections?
-
-       Hint: If a Load Balancer needs to route based on the path /api/user, what does it need
-       to be able to "read"?
+       A load balancer routing HTTP requests based on /api/user path needs to read
+       something specific. What does it need to be able to read that a load balancer
+       handling raw TCP connections doesn't?
 
 User: A needs to understand paths so I'm guessing ALB (L7), B hits by port so maybe NLB?
 
@@ -215,43 +202,29 @@ Guide: Exactly right — you derived it yourself.
        - ALB = L7 (application layer) → understands HTTP path, headers, host
        - NLB = L4 (transport layer) → only sees IP + port, fast but "illiterate"
 
+── Concept complete ──
+
+Key takeaways
+• ALB operates at L7 (HTTP/HTTPS) — can route by path, host, headers
+• NLB operates at L4 (TCP/UDP) — sees only IP + port, lower latency
+• Choose by what the load balancer needs to "read" to make routing decisions
+
+Keep thinking:
+1. When would you pick NLB over ALB even for an HTTP service?
+2. What happens to WebSocket connections on an ALB vs NLB?
+3. CLB is deprecated — what does that tell you about the direction AWS is going?
+
 ---
-
-Guide: GCP also has the concept of "layers," but categorizes them differently. Think about this:
-       what different requirements might a global service vs. a Taiwan-only service have for a
-       Load Balancer?
-
-       Hint: Traffic coming from the US vs. only within Taiwan — where do you want the Load
-       Balancer to intercept it?
-
-User: Cross-region?
-
-Guide: Yes! GCP's second dimension is exactly Global vs. Regional.
-
-       With AWS, you'd need Route 53 + a separate ALB per region for global routing. What do you
-       think is the fundamental difference between GCP Global LB and DNS round-robin?
-
-       Hint: DNS decides where to go before the connection; Global LB decides when the packet arrives.
-
-User: GCP would be faster?
-
-Guide: Right direction. But DNS has a fatal flaw — a Taiwan user gets routed to Tokyo, Tokyo goes
-       down. What happens to the user?
-
-User: (Not sure)
-
-Guide: DNS has TTL caching. Tokyo is down, but your computer already cached "go to Tokyo" — until
-       the TTL expires, it keeps hitting the dead server. GCP Global LB uses Anycast: one global IP,
-       Google Edge decides in real time which region to send you to. No cache problem.
+Ready for the next concept, or want to check that you really got this one?
+→ /mindflint-check — three questions to test your understanding
+→ /mindflint-review — surface your weak spots from this session
 ```
 
-<div align="center">
+---
 
-<img src="mindflint-logo.png" width="280" />
+<a id="中文"></a>
 
-</div>
-
-## 中文版
+## 中文
 
 > 燧石之用，不在照明，在於引燃。  
 > 凡代人思者，予以燭而奪其燧。
@@ -261,15 +234,17 @@ Claude Code 與 Codex skill 套件，基於**學思達教學法**，逼出真正
 > AI 給的答案，讀完像是懂了。  
 > 那不是懂，是借了別人的火把走路——一熄，就迷路。
 
-## 核心理念
+### 核心理念
 
-不直接給答案。先問，再引導，最後驗證。
+不直接給答案。先鋪脈絡，再引導思考，最後驗證。
 
 ```
-問題 → 反問現有理解 → 引導推導 → 驗證理解 → 留下思考題
+問題 → 鋪景（2-4 句脈絡）→ 引導問題 → 引導推導 → 驗證理解 → 重點整理 + 下一步提示
 ```
 
-## Skills
+每個概念結束時，引導者會整理重點，並提示用戶使用 `/mindflint-check` 測驗或 `/mindflint-review` 回顧弱點。
+
+### Skills
 
 | Skill | 指令 | 用途 |
 |-------|------|------|
@@ -277,20 +252,22 @@ Claude Code 與 Codex skill 套件，基於**學思達教學法**，逼出真正
 | `mindflint-check` | `/mindflint-check` | 測驗：3 題（概念/應用/遷移）找出真正的斷點 |
 | `mindflint-review` | `/mindflint-review` | 回顧：掃描對話，整理弱點清單 |
 
-## 安裝
+所有 skill 會自動配合用戶的語言（中文或英文）回應。
 
-### Claude Code
+### 安裝
+
+#### Claude Code
 
 **從 GitHub 安裝：**
 ```bash
 claude plugin marketplace add chungFTF/mindflint
-claude plugin install ai-learning-tools
+claude plugin install mindflint
 ```
 
 **從本機路徑安裝：**
 ```bash
 claude plugin marketplace add ~/path/to/mindflint
-claude plugin install ai-learning-tools
+claude plugin install mindflint
 ```
 
 安裝後重啟 Claude Code，確認安裝成功：
@@ -298,10 +275,9 @@ claude plugin install ai-learning-tools
 claude plugin list
 ```
 
-### Codex
+#### Codex
 
-Mindflint 也可以作為 Codex plugin 使用，而且使用者不需要先 clone 這個 repo。
-Codex plugin id 是 `ai-learning-tools`，產品/顯示名稱是 Mindflint。
+Mindflint 也可以作為 Codex plugin 使用，不需要先 clone 這個 repo。Codex plugin id 是 `mindflint`。
 
 **從 GitHub 安裝：**
 ```bash
@@ -319,27 +295,22 @@ codex plugin marketplace add chungFTF/mindflint --ref v0.2.0
 codex plugin marketplace add ~/path/to/mindflint
 ```
 
-接著打開 plugin directory：
-```text
-/plugins
-```
-
-選擇 `Mindflint Plugins` marketplace，安裝 Mindflint / `ai-learning-tools`。
+接著打開 plugin directory，選擇 `Mindflint Plugins` marketplace，安裝 Mindflint。
 
 之後若要更新 GitHub 安裝的 marketplace：
 ```bash
 codex plugin marketplace upgrade mindflint
 ```
 
-## 使用流程
+### 使用流程
 
-### Claude Code
+#### Claude Code
 
 **1. 開始學習**
 ```
 /mindflint BigQuery 的 partition 和 cluster 差異
 ```
-Claude 會先問你目前的理解，不會直接解釋。
+Claude 會先鋪脈絡、再問你的理解，不會直接解釋。
 
 **2. 測驗理解**
 ```
@@ -358,12 +329,12 @@ Claude 會先問你目前的理解，不會直接解釋。
 stop mindflint / 正常模式
 ```
 
-### Codex
+#### Codex
 
-Codex 不使用 Claude Code 那套 slash-command model。先載入已安裝的 plugin：
+先載入已安裝的 plugin：
 
 ```text
-@Ai-Learning-Tools
+@Mindflint
 ```
 
 再選擇 bundled skill：
@@ -372,17 +343,14 @@ Codex 不使用 Claude Code 那套 slash-command model。先載入已安裝的 p
 $mindflint
 $mindflint-check
 $mindflint-review
-$mindflint-en
-$mindflint-check-en
-$mindflint-review-en
 ```
 
 範例：
 
 ```text
-@Ai-Learning-Tools $mindflint BigQuery 的 partition 和 cluster 差異
-@Ai-Learning-Tools $mindflint-check 測驗我 BigQuery partition vs cluster
-@Ai-Learning-Tools $mindflint-review 回顧這段對話中我的弱點
+@Mindflint $mindflint BigQuery 的 partition 和 cluster 差異
+@Mindflint $mindflint-check 測驗我 BigQuery partition vs cluster
+@Mindflint $mindflint-review 回顧這段對話中我的弱點
 ```
 
 如果某個 Codex CLI 版本沒有出現 skill autocomplete，也可以用 skill path 明確指定：
@@ -393,61 +361,29 @@ Use skills/mindflint-check to check my understanding.
 Use skills/mindflint-review to review my weak spots from this conversation.
 ```
 
-注意：Claude Code 使用 `/mindflint` 這類 slash commands；Codex 使用 `@`
-載入 plugin，再用 `$` 選 bundled skill。
-
-## 檔案結構
-
-```
-AILearningTools/
-├── .agents/plugins/marketplace.json
-├── .claude-plugin/
-│   ├── marketplace.json
-│   └── plugin.json
-├── .codex-plugin/plugin.json
-├── plugin.yaml
-├── skills/
-│   ├── mindflint/SKILL.md
-│   ├── mindflint-check/SKILL.md
-│   ├── mindflint-review/SKILL.md
-│   ├── mindflint-en/SKILL.md
-│   ├── mindflint-check-en/SKILL.md
-│   └── mindflint-review-en/SKILL.md
-└── commands/
-    ├── mindflint.toml
-    ├── mindflint-check.toml
-    ├── mindflint-review.toml
-    ├── mindflint-en.toml
-    ├── mindflint-check-en.toml
-    └── mindflint-review-en.toml
-```
-
-## Roadmap
+### Roadmap
 
 - [ ] `mindflint-progress` — 跨對話的理解進度追蹤（需要 persistent storage）
 - [ ] Hooks — 自動偵測用戶是否跳過思考直接要答案
 
-## 對話示範
+### 對話示範
 
 ```
 用戶：我想知道 GCP load balancer 的概念對比於 AWS Load Balancer 有何不同
 
-引導者：先別急著比較。你目前對 AWS Load Balancer 的理解是什麼？
+引導者：在比較之前，先鋪個背景。AWS Load Balancer 其實是三個產品家族——ALB、NLB、CLB，
+        每個運作在網路堆疊的不同層。它運作的層決定了它能「看見」什麼，以及能做什麼路由決策。
+
+        在這個背景下，你覺得決定 Load Balancer 運作在哪一層的關鍵因素是什麼？
 
 用戶：我知道 AWS Load Balancer 可以接上 target group，會有 healthcheck，
       依照不同規則可以縮放、新增 instance
 
-引導者：你掌握了核心骨架。現在往前一步——你覺得為什麼需要三種不同的 Load Balancer
-        （ALB/NLB/CLB）？同樣都是「把流量分散到多台機器」，為什麼不用同一種就好？
+引導者：你掌握了操作骨架——target group、health check、縮放，這些是「它做什麼」。
+        現在來看「它怎麼看流量」。
 
-        提示：想想 HTTP 請求、UDP 封包、TCP 資料庫連線——它們需要的處理方式一樣嗎？
-
-用戶：因為一個機器太多請求會負載過重
-
-引導者：你說的是 Load Balancer 存在的原因，完全正確。不過我問的是為什麼需要不同種類。
-        換個角度：處理 HTTP 網頁請求跟處理 TCP 資料庫連線，Load Balancer 需要「懂」的東西一樣嗎？
-
-        提示：如果 Load Balancer 要根據路徑 /api/user 轉到不同機器，它必須能「看懂」什麼？
+        一個 Load Balancer 要根據 /api/user 路徑轉到不同機器，它必須能讀取什麼？
+        而一個處理原始 TCP 連線的 Load Balancer 又不需要讀什麼？
 
 用戶：A 要懂路徑所以我猜是 ALB (L7)，B 是打到 port 所以我猜是 NLB？
 
@@ -455,29 +391,26 @@ AILearningTools/
         - ALB = L7（應用層）→ 看得懂 HTTP path、header、host
         - NLB = L4（傳輸層）→ 只看 IP + port，速度快但「不識字」
 
+── 這個概念走完了 ──
+
+重點整理
+• ALB 運作在 L7（HTTP/HTTPS）—— 可以根據 path、host、header 做路由
+• NLB 運作在 L4（TCP/UDP）—— 只看 IP + port，延遲更低
+• 選擇依據：Load Balancer 需要「讀懂」什麼才能做路由決策
+
+帶走思考：
+1. 什麼情況下，就算是 HTTP 服務也應該選 NLB？
+2. WebSocket 連線在 ALB 和 NLB 上的行為有什麼差異？
+3. CLB 已被棄用——這告訴你 AWS 的方向是什麼？
+
 ---
-
-引導者：GCP 也有「層」的概念，但分類方式不太一樣。想想看：一個全球服務跟一個只在台灣的服務，
-        Load Balancer 可能有什麼不同需求？
-
-        提示：流量從美國打進來 vs 只在台灣內部，你希望 Load Balancer 在哪裡接住流量？
-
-用戶：跨 region？
-
-引導者：對！GCP 的第二個維度就是 Global vs Regional。
-
-        AWS 要做全球路由要搭 Route 53 + 每個 region 各自一個 ALB。
-        你覺得 GCP Global LB 跟 DNS 輪詢比起來，根本差異是什麼？
-
-        提示：DNS 是在連線之前決定去哪裡，Global LB 是在封包進來當下決定。
-
-用戶：GCP 會更快？
-
-引導者：方向對。但 DNS 方案有個致命問題——台灣用戶被導到東京，東京掛了，用戶會發生什麼事？
-
-用戶：（不知道）
-
-引導者：DNS 有 TTL 快取。東京掛了，但你的電腦已經快取「去東京」這個答案，TTL 沒過前還是繼續
-        打掛掉的地方。GCP Global LB 用 Anycast，全球單一 IP，Google Edge 即時決定轉到哪個
-        region，沒有快取問題。
+要繼續下一個概念，還是先確認一下你真的懂了？
+→ /mindflint-check 出三道題測驗你
+→ /mindflint-review 整理你這輪的弱點
 ```
+
+<div align="center">
+
+<img src="icon.jpg" width="280" />
+
+</div>

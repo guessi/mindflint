@@ -21,7 +21,7 @@ Mindflint prevents fake learning by making the assistant ask first, guide deriva
 * Keep Claude Code support working.
 * Keep Codex support additive; do not break existing Claude Code installation.
 * Do not rename existing skills, commands, or plugin identifiers unless the README and marketplace metadata are updated together.
-* Preserve the existing plugin name `ai-learning-tools` unless the project owner explicitly decides to rename it.
+* The plugin name is `mindflint`.
 
 ## Skill authoring rules
 
@@ -29,7 +29,8 @@ Mindflint prevents fake learning by making the assistant ask first, guide deriva
 * Each `SKILL.md` must keep YAML frontmatter with at least `name` and `description`.
 * Keep descriptions concise, trigger-oriented, and clear.
 * Prefer instruction-only skills unless scripts, hooks, or persistent storage are explicitly needed.
-* The core Mindflint behavior is: ask first, guide derivation, verify understanding, then leave a takeaway question.
+* The core Mindflint behavior is: set context first, guide derivation, verify understanding, then summarize key takeaways and prompt check/review.
+* All skills respond in the same language the user writes in — no separate `-en` variants needed.
 
 ## Claude Code notes
 

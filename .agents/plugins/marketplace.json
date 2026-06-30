@@ -5,7 +5,7 @@
   },
   "plugins": [
     {
-      "name": "ai-learning-tools",
+      "name": "mindflint",
       "source": {
         "source": "local",
         "path": "./"
