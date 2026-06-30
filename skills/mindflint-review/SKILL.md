@@ -7,7 +7,9 @@ description: >
 license: MIT
 ---
 
-# 學習回顧模式
+# 學習回顧模式（Learning Review）
+
+Respond in the same language the user writes in.
 
 掃描本次對話，找出用戶真正不懂的地方，整理成可行動的回顧清單。一次性輸出，不持續。
 

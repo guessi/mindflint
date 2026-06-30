@@ -1,2 +1,0 @@
-description = "Quiz the current topic — three questions (concept/application/transfer), find the real breaks"
-prompt = "Quiz the user on the topic just discussed (or the user-specified {{args}}) with three questions: concept, application, and transfer — one at a time, waiting for the user's answer before the next. After all three, output a weakness list and next-step suggestions."
