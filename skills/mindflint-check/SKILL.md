@@ -8,7 +8,9 @@ argument-hint: "[topic]"
 license: MIT
 ---
 
-# 學習測驗模式
+# 學習測驗模式（Learning Quiz）
+
+Respond in the same language the user writes in.
 
 針對剛學過的主題，用三題驗證真實理解程度。不是為了打分數，是為了找出還沒真正懂的地方。
 

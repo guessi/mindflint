@@ -8,8 +8,8 @@
   },
   "plugins": [
     {
-      "name": "ai-learning-tools",
-      "description": "Socratic learning skills (EN + ZH) — active learning, verified understanding, differentiated feedback, anti-fake-learning.",
+      "name": "mindflint",
+      "description": "Socratic learning skills — active learning, verified understanding, differentiated feedback, anti-fake-learning.",
       "source": "./",
       "category": "education"
     }

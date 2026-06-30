@@ -1,4 +1,4 @@
-name: ai-learning-tools
+name: mindflint
 version: 0.2.0
 description: Socratic learning skills (EN + ZH) — active learning, verified understanding, differentiated feedback, anti-fake-learning.
 author: Stephanie
@@ -6,13 +6,7 @@ provides_commands:
   - mindflint
   - mindflint-check
   - mindflint-review
-  - mindflint-en
-  - mindflint-check-en
-  - mindflint-review-en
 provides_skills:
   - mindflint
   - mindflint-check
   - mindflint-review
-  - mindflint-en
-  - mindflint-check-en
-  - mindflint-review-en
