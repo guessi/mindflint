@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="icon.jpg" width="280" />
+<img src="icon.jpg" width="280" alt="Mindflint logo" />
 
 # mindflint
 
@@ -21,11 +21,13 @@ A Claude Code and Codex skill suite based on **Socratic guided learning** — pr
 
 > Fake learning: you read the AI's answer, felt like you got it, but didn't.
 
+If you already use [Claude Code](https://claude.com/product/claude-code) or [Codex](https://developers.openai.com/codex) as your AI coding assistant, Mindflint adds a guided-learning mode on top of it — it doesn't replace or require anything else.
+
 ### Core Principle
 
 Never give the answer directly. Set context first, then guide thinking, then verify.
 
-```
+```text
 Question → Landscape (2-4 sentences) → Guiding question → Guide derivation → Verify → Key takeaways + next step
 ```
 
@@ -43,21 +45,26 @@ All skills respond in the language the user writes in (Chinese or English).
 
 ### Installation
 
+Requires [Claude Code](https://claude.com/product/claude-code) or [Codex](https://developers.openai.com/codex) already installed and set up on your machine. Run the commands below in your terminal (not inside a chat session).
+
 #### Claude Code
 
 **From GitHub:**
+
 ```bash
 claude plugin marketplace add chungFTF/mindflint
 claude plugin install mindflint
 ```
 
 **From local path:**
+
 ```bash
 claude plugin marketplace add ~/path/to/mindflint
 claude plugin install mindflint
 ```
 
 Restart Claude Code after install. Verify with:
+
 ```bash
 claude plugin list
 ```
@@ -68,53 +75,78 @@ Mindflint can also be installed as a Codex plugin without cloning this repositor
 The Codex plugin id is `mindflint`.
 
 **From GitHub:**
+
 ```bash
 codex plugin marketplace add chungFTF/mindflint --ref main
 codex
 ```
 
-For stable releases, prefer a version tag once one is available:
+For stable releases, prefer a version tag if one is available for the release you want:
+
 ```bash
 codex plugin marketplace add chungFTF/mindflint --ref v0.2.0
 ```
 
 **From local path for development:**
+
 ```bash
 codex plugin marketplace add ~/path/to/mindflint
 ```
 
-Then open the plugin directory, select the `Mindflint Plugins` marketplace and install Mindflint.
+Then open the plugin directory, select the `Mindflint Plugins` marketplace and install Mindflint. This works the same way for both the GitHub and local path installs above.
 
 To refresh a GitHub-installed marketplace later:
+
 ```bash
 codex plugin marketplace upgrade mindflint
 ```
 
-### Usage
+### Uninstall
 
 #### Claude Code
 
-**1. Start learning**
+```bash
+claude plugin uninstall mindflint
 ```
+
+#### Codex
+
+Open the plugin directory, select the `Mindflint Plugins` marketplace, and uninstall Mindflint.
+
+### Usage
+
+The BigQuery/AWS examples below are just illustrations — swap in any topic you're trying to learn.
+
+#### Claude Code
+
+##### 1. Start learning
+
+```text
 /mindflint difference between BigQuery partition and cluster
 ```
+
 Claude sets context first, then asks for your thinking — no direct explanation.
 
-**2. Quiz yourself**
-```
+##### 2. Quiz yourself
+
+```text
 /mindflint-check
 ```
-Three questions, one at a time. Weakness list after all three.
 
-**3. Review weak spots**
-```
+Three questions, one at a time. If you don't specify a topic and none is clear from the conversation, the skill asks which topic to quiz first. Weakness list after all three.
+
+##### 3. Review weak spots
+
+```text
 /mindflint-review
 ```
-Scans the conversation, lists breaks and concrete reinforcement suggestions.
 
-**4. Exit guided mode**
-```
-stop mindflint / normal mode
+Scans the conversation, lists breaks and concrete reinforcement suggestions. If the conversation doesn't have enough material yet, it tells you to run `/mindflint` or `/mindflint-check` first.
+
+##### 4. Exit guided mode
+
+```text
+stop learn / normal mode
 ```
 
 #### Codex
@@ -151,22 +183,17 @@ Use skills/mindflint-review to review my weak spots from this conversation.
 
 ### File Structure
 
-```
+```text
 mindflint/
 ├── .agents/plugins/marketplace.json
 ├── .claude-plugin/
 │   ├── marketplace.json
 │   └── plugin.json
 ├── .codex-plugin/plugin.json
-├── plugin.yaml
-├── skills/
-│   ├── mindflint/SKILL.md
-│   ├── mindflint-check/SKILL.md
-│   └── mindflint-review/SKILL.md
-└── commands/
-    ├── mindflint.toml
-    ├── mindflint-check.toml
-    └── mindflint-review.toml
+└── skills/
+    ├── mindflint/SKILL.md
+    ├── mindflint-check/SKILL.md
+    └── mindflint-review/SKILL.md
 ```
 
 ### Roadmap
@@ -176,7 +203,7 @@ mindflint/
 
 ### Example Conversation
 
-```
+```text
 User: I want to understand how GCP Load Balancer differs from AWS Load Balancer.
 
 Guide: Before we compare, let me set the stage. AWS Load Balancer is a family of
@@ -234,11 +261,13 @@ Claude Code 與 Codex skill 套件，基於**學思達教學法**，逼出真正
 > AI 給的答案，讀完像是懂了。  
 > 那不是懂，是借了別人的火把走路——一熄，就迷路。
 
+如果你已經在用 [Claude Code](https://claude.com/product/claude-code) 或 [Codex](https://developers.openai.com/codex) 當你的 AI 開發助手，Mindflint 是加在上面的引導學習模式——不取代、也不需要額外安裝其他東西。
+
 ### 核心理念
 
 不直接給答案。先鋪脈絡，再引導思考，最後驗證。
 
-```
+```text
 問題 → 鋪景（2-4 句脈絡）→ 引導問題 → 引導推導 → 驗證理解 → 重點整理 + 下一步提示
 ```
 
@@ -256,21 +285,26 @@ Claude Code 與 Codex skill 套件，基於**學思達教學法**，逼出真正
 
 ### 安裝
 
+需要先安裝好 [Claude Code](https://claude.com/product/claude-code) 或 [Codex](https://developers.openai.com/codex) 其中一個並完成設定。下面的指令都是在終端機（terminal）執行，不是在對話框裡輸入。
+
 #### Claude Code
 
 **從 GitHub 安裝：**
+
 ```bash
 claude plugin marketplace add chungFTF/mindflint
 claude plugin install mindflint
 ```
 
 **從本機路徑安裝：**
+
 ```bash
 claude plugin marketplace add ~/path/to/mindflint
 claude plugin install mindflint
 ```
 
 安裝後重啟 Claude Code，確認安裝成功：
+
 ```bash
 claude plugin list
 ```
@@ -280,53 +314,78 @@ claude plugin list
 Mindflint 也可以作為 Codex plugin 使用，不需要先 clone 這個 repo。Codex plugin id 是 `mindflint`。
 
 **從 GitHub 安裝：**
+
 ```bash
 codex plugin marketplace add chungFTF/mindflint --ref main
 codex
 ```
 
-正式 release 後，建議改用版本 tag：
+正式 release 後，建議改用版本 tag（若該版本已標記 tag）：
+
 ```bash
 codex plugin marketplace add chungFTF/mindflint --ref v0.2.0
 ```
 
 **從本機路徑安裝，供開發測試使用：**
+
 ```bash
 codex plugin marketplace add ~/path/to/mindflint
 ```
 
-接著打開 plugin directory，選擇 `Mindflint Plugins` marketplace，安裝 Mindflint。
+接著打開 plugin directory，選擇 `Mindflint Plugins` marketplace，安裝 Mindflint。上面兩種安裝方式（GitHub 或本機路徑）之後都走這個步驟。
 
 之後若要更新 GitHub 安裝的 marketplace：
+
 ```bash
 codex plugin marketplace upgrade mindflint
 ```
 
-### 使用流程
+### 解除安裝
 
 #### Claude Code
 
-**1. 開始學習**
+```bash
+claude plugin uninstall mindflint
 ```
+
+#### Codex
+
+打開 plugin directory，選擇 `Mindflint Plugins` marketplace，解除安裝 Mindflint。
+
+### 使用流程
+
+以下的 BigQuery／AWS 只是示範主題，實際使用時換成你想學的任何主題都可以。
+
+#### Claude Code
+
+##### 1. 開始學習
+
+```text
 /mindflint BigQuery 的 partition 和 cluster 差異
 ```
+
 Claude 會先鋪脈絡、再問你的理解，不會直接解釋。
 
-**2. 測驗理解**
-```
+##### 2. 測驗理解
+
+```text
 /mindflint-check
 ```
-出三題，一次一題，等你回答才繼續。結束後給弱點清單。
 
-**3. 回顧弱點**
-```
+出三題，一次一題，等你回答才繼續。如果沒有指定主題、對話中也沒有明確主題，會先反問你要測驗哪個主題。結束後給弱點清單。
+
+##### 3. 回顧弱點
+
+```text
 /mindflint-review
 ```
-掃描本次對話，列出斷點和具體補強建議。
 
-**4. 關閉引導模式**
-```
-stop mindflint / 正常模式
+掃描本次對話，列出斷點和具體補強建議。如果對話還不夠，會提示先用 `/mindflint` 或 `/mindflint-check` 建立資料。
+
+##### 4. 關閉引導模式
+
+```text
+stop learn / 正常模式
 ```
 
 #### Codex
@@ -361,6 +420,21 @@ Use skills/mindflint-check to check my understanding.
 Use skills/mindflint-review to review my weak spots from this conversation.
 ```
 
+### 檔案結構
+
+```text
+mindflint/
+├── .agents/plugins/marketplace.json
+├── .claude-plugin/
+│   ├── marketplace.json
+│   └── plugin.json
+├── .codex-plugin/plugin.json
+└── skills/
+    ├── mindflint/SKILL.md
+    ├── mindflint-check/SKILL.md
+    └── mindflint-review/SKILL.md
+```
+
 ### Roadmap
 
 - [ ] `mindflint-progress` — 跨對話的理解進度追蹤（需要 persistent storage）
@@ -368,7 +442,7 @@ Use skills/mindflint-review to review my weak spots from this conversation.
 
 ### 對話示範
 
-```
+```text
 用戶：我想知道 GCP load balancer 的概念對比於 AWS Load Balancer 有何不同
 
 引導者：在比較之前，先鋪個背景。AWS Load Balancer 其實是三個產品家族——ALB、NLB、CLB，
@@ -411,6 +485,6 @@ Use skills/mindflint-review to review my weak spots from this conversation.
 
 <div align="center">
 
-<img src="icon.jpg" width="280" />
+<img src="icon.jpg" width="280" alt="Mindflint logo" />
 
 </div>
