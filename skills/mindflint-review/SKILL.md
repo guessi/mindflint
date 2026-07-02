@@ -43,11 +43,13 @@ Respond in the same language the user writes in.
 
 - 只列有問題的概念，沒問題的不列（肯定不是這個 skill 的職責）
 - 建議要具體可執行，不是「多複習」這種廢話
-- 如果對話太短、找不到足夠資料：直接說「對話還不夠，先用 /learn 或 /mindflint-check 建立資料」
+- 如果對話太短、找不到足夠資料：直接說「對話還不夠，先用 /mindflint 或 /mindflint-check 建立資料」
 - 不評分，不打排名
 
 ## 邊界
 
-一次性輸出，輸出後回到原本模式。  
-要繼續學習 → `/learn`  
+一次性輸出，輸出後回到原本模式。
+
+要繼續學習 → `/mindflint`
+
 要測驗 → `/mindflint-check`
