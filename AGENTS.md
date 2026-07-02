@@ -8,10 +8,8 @@ Mindflint prevents fake learning by making the assistant ask first, guide deriva
 
 ## Repository layout
 
-* `skills/<skill-name>/SKILL.md`: reusable agent skills.
-* `commands/*.toml`: Claude Code command definitions.
-* `plugin.yaml`: Claude Code plugin metadata.
-* `.claude-plugin/`: Claude Code plugin marketplace metadata.
+* `skills/<skill-name>/SKILL.md`: reusable agent skills, shared by both hosts.
+* `.claude-plugin/`: Claude Code plugin manifest and marketplace metadata.
 * `.codex-plugin/plugin.json`: Codex plugin manifest.
 * `.agents/plugins/marketplace.json`: Codex repo marketplace metadata.
 * `README.md`: user-facing installation, usage, and examples.
@@ -34,9 +32,8 @@ Mindflint prevents fake learning by making the assistant ask first, guide deriva
 
 ## Claude Code notes
 
-* Claude Code commands live under `commands/*.toml`.
-* Claude Code plugin metadata lives in `plugin.yaml` and `.claude-plugin/`.
-* Do not remove or rewrite Claude command files when adding support for other hosts.
+* Claude Code plugin metadata lives in `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`.
+* Claude Code auto-discovers `skills/<name>/SKILL.md` at the plugin root; no separate command files are needed.
 
 ## Codex notes
 
