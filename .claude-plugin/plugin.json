@@ -1,5 +1,20 @@
 {
   "name": "mindflint",
   "version": "0.2.0",
-  "description": "Socratic learning skills (EN + ZH) — active learning, verified understanding, differentiated feedback, anti-fake-learning."
+  "description": "Socratic learning skills -- active learning, verified understanding, differentiated feedback, anti-fake-learning.",
+  "author": {
+    "name": "Stephanie",
+    "url": "https://github.com/chungFTF"
+  },
+  "homepage": "https://github.com/chungFTF/mindflint",
+  "repository": "https://github.com/chungFTF/mindflint",
+  "license": "MIT",
+  "keywords": [
+    "learning",
+    "socratic",
+    "education",
+    "mindflint",
+    "active-learning",
+    "anti-fake-learning"
+  ]
 }
